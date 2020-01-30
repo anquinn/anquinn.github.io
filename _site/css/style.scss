@@ -1,0 +1,168 @@
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css";
+@import "https://fonts.googleapis.com/css?family=Red+Hat+Display:400,900&display=swap";
+@import "variables.scss";
+@import "media.scss";
+
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Red Hat Display', sans-serif;
+	font-weight: 300;
+	color: $light;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: top right;
+	background-size: cover; 
+}
+
+h1 {
+	text-align: center;
+	font-weight: 900;
+	font-size: 50px;
+	color: $dark;
+}
+
+h2 {
+	font-size: 17px;
+	font-weight: 400;
+	text-align: center;
+	color: $light;
+	margin-bottom: 50px;
+}
+
+.container-body {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+}
+
+.navbar-brand {
+	float: left;
+	padding: 5px 40px 0 15px;
+	line-height: 20px;
+	font-size: 30px;
+
+	img {
+		height: 80px;
+	}
+}
+
+.navbar-brand.inactive{
+	display: none;
+}
+
+.navbar-transparent {
+	background-color: transparent;
+	position: absolute;
+	color: #ffffff;
+	top: 0px;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+	padding: 35px 0px;
+	font-size: 18px;
+
+	.navbar-toggle {
+		border-color: #fff;
+
+		.icon-bar {
+			background-color: #fff;
+		}
+	}
+}
+
+
+.header {
+	color: #fff;
+	margin: 0px;
+	font-size: 21px;
+	
+	min-height: 100%;
+	//position: relative;
+
+	h1, h2 {
+		color: #fff;
+		margin-top: 40px;
+	}
+}
+
+.header {
+
+	left:0;
+	width: 100%;
+	min-height: 100%;
+	background-color: $light;
+	
+	border-bottom-style: solid;
+	border-bottom-color: #d3d3d3;
+	border-bottom-width: 1px;
+	
+	height: 600px;
+
+	background-image: url("../img/bg.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: top center;
+}
+
+.overlay {
+	h1 {
+		font-size: 80px;
+		margin-bottom: 20px;
+	}
+
+	h2 {
+		font-size: 30px;
+	}
+
+	padding-top: 150px;
+	height: 600px;
+	text-shadow: 1px 1px 0px rgba(0,0,0, 0.4);
+	text-align: center;
+}
+
+.stripe {
+	background: #fff;
+	font-size: 17px;
+	line-height: 30px;
+	overflow-x: hidden;
+	text-align: center;
+
+	img {
+		max-width: 50px;
+	}
+}
+
+.container.padded {
+	padding-top: 60px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+footer {
+	padding-top: 50px;
+	background: #fff;
+	min-height: 100px;
+	text-align: center;
+
+	.row {
+		margin-bottom: 20px;
+	}
+
+	a {
+		color: $light;
+		&:hover {
+			color: $blue;
+			text-decoration: none;
+		}
+	}
+
+	.logo-footer {
+		display: block;
+		vertical-align: middle;
+		text-align: center;
+		margin: 0 auto;
+	}
+}
