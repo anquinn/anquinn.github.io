@@ -124,7 +124,7 @@ footer {
       color: #00b8e4;
       text-decoration: none; }
   footer .logo-footer {
-    display: block;
     vertical-align: middle;
     text-align: center;
-    margin: 0 auto; }
+    margin: 0 auto;
+    max-height: 40px; }
