@@ -32,6 +32,7 @@
     const mark = document.querySelector('.mark');
     if (!mark) return;
 
+    const cssScroll = CSS.supports('animation-timeline: scroll()');
     let pointerX = 0;
     let pointerY = 0;
     let frame = 0;
@@ -42,13 +43,13 @@
         for (const prop of ['--sy', '--mx', '--my']) mark.style.removeProperty(prop);
         return;
       }
-      mark.style.setProperty('--sy', `${Math.min(Math.round(scrollY * 0.2), 240)}px`);
+      if (!cssScroll) mark.style.setProperty('--sy', `${Math.min(scrollY * 0.2, 240)}px`);
       mark.style.setProperty('--mx', `${Math.round(-pointerX * 36)}px`);
       mark.style.setProperty('--my', `${Math.round(-pointerY * 22)}px`);
     };
     const schedule = () => { frame ||= requestAnimationFrame(update); };
 
-    addEventListener('scroll', schedule, { passive: true });
+    if (!cssScroll) addEventListener('scroll', schedule, { passive: true });
     document.addEventListener('mousemove', (e) => {
       if (!finePointer.matches) return;
       pointerX = e.clientX / innerWidth - 0.5;

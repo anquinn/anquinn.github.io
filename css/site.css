@@ -1,5 +1,3 @@
-/* Inter Tight (variable, 400–800), self-hosted. SIL Open Font License: fonts/OFL.txt */
-/* latin-ext */
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
@@ -9,7 +7,6 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-/* latin */
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
@@ -36,7 +33,7 @@
   --accent: #00B5E2;
   --ease: cubic-bezier(.2, .7, .2, 1);
 
-  /* Easter-egg palette: Konami burst, colour cycle and confetti */
+  /* Easter-egg palette */
   --c1: var(--accent);
   --c2: #3D7BFF;
   --c3: #A78BFA;
@@ -47,9 +44,15 @@
   --c8: #2EE6A6;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html { background: var(--bg); }
+html {
+  background: var(--bg);
+}
 
 body {
   margin: 0;
@@ -64,13 +67,22 @@ a {
   color: var(--ink);
   text-decoration: none;
 
-  &:hover, &:focus-visible { color: var(--accent); }
-  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
 }
 
-.sprite { display: none; }
+.sprite {
+  display: none;
+}
 
-/* Screen-reader-only live region: always in the accessibility tree so announcements are reliable */
 .sr-only {
   position: absolute;
   inline-size: 1px;
@@ -105,7 +117,9 @@ a {
   inline-size: min(1000px, 92vw);
   pointer-events: none;
 
-  & .layers { position: relative; }
+  & .layers {
+    position: relative;
+  }
 
   & svg {
     display: block;
@@ -120,7 +134,7 @@ a {
     fill: var(--tint);
   }
 
-  /* Konami echoes: coloured copies of the mark, hidden until .burst is on .page */
+  /* Konami */
   & .echo {
     position: absolute;
     inset: 0;
@@ -136,6 +150,13 @@ a {
     & .layers {
       transform: translate3d(0, var(--sy, 0px), 0);
       will-change: transform;
+
+      @supports (animation-timeline: scroll()) {
+        transform: none;
+        animation: mark-scroll linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 1200px;
+      }
     }
 
     .burst & {
@@ -143,7 +164,10 @@ a {
         animation: echo 2.2s var(--ease) both;
         animation-delay: calc(var(--i) * 45ms);
       }
-      & .main { animation: tint 2.2s steps(1) both; }
+
+      & .main {
+        animation: tint 2.2s steps(1) both;
+      }
     }
   }
 
@@ -154,25 +178,70 @@ a {
   }
 }
 
+@keyframes mark-scroll {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 240px;
+  }
+}
+
 @keyframes echo {
-  0% { opacity: 0; translate: 0 0; }
-  35%, 70% { opacity: 1; translate: calc(var(--i) * -18px) calc(var(--i) * 12px); }
-  100% { opacity: 0; translate: 0 0; }
+  0% {
+    opacity: 0;
+    translate: 0 0;
+  }
+
+  35%,
+  70% {
+    opacity: 1;
+    translate: calc(var(--i) * -18px) calc(var(--i) * 12px);
+  }
+
+  100% {
+    opacity: 0;
+    translate: 0 0;
+  }
 }
 
-/* Steps through the palette, then settles back on the element's own --tint (implicit 100%) */
+/* Step through the palette then settles back on the element's own --tint (implicit 100%) */
 @keyframes tint {
-  0% { --tint: var(--c1); }
-  12.5% { --tint: var(--c2); }
-  25% { --tint: var(--c3); }
-  37.5% { --tint: var(--c4); }
-  50% { --tint: var(--c5); }
-  62.5% { --tint: var(--c6); }
-  75% { --tint: var(--c7); }
-  87.5% { --tint: var(--c8); }
+  0% {
+    --tint: var(--c1);
+  }
+
+  12.5% {
+    --tint: var(--c2);
+  }
+
+  25% {
+    --tint: var(--c3);
+  }
+
+  37.5% {
+    --tint: var(--c4);
+  }
+
+  50% {
+    --tint: var(--c5);
+  }
+
+  62.5% {
+    --tint: var(--c6);
+  }
+
+  75% {
+    --tint: var(--c7);
+  }
+
+  87.5% {
+    --tint: var(--c8);
+  }
 }
 
-/* Pills pinned to the bottom centre of the viewport: Konami toast and GOTV prompt */
+/* Pills pinned to the bottom centre of the viewport */
 .pill {
   position: fixed;
   inset-inline: 0;
@@ -190,27 +259,48 @@ a {
   letter-spacing: .06em;
   white-space: nowrap;
 
-  & strong { font-weight: 800; letter-spacing: 0; }
+  & strong {
+    font-weight: 800;
+    letter-spacing: 0;
+  }
 }
 
-/* Toast never blocks clicks */
+/* don't blocks clicks */
 .toast {
   z-index: 10;
   padding: 10px 16px;
   opacity: 0;
   pointer-events: none;
 
-  &:empty { display: none; }
-  .burst & { animation: toast 2.8s var(--ease) both; }
+  &:empty {
+    display: none;
+  }
+
+  .burst & {
+    animation: toast 2.8s var(--ease) both;
+  }
 }
 
 @keyframes toast {
-  0%, 10% { opacity: 0; translate: 0 16px; }
-  22%, 80% { opacity: 1; translate: 0 0; }
-  100% { opacity: 0; translate: 0 8px; }
+
+  0%,
+  10% {
+    opacity: 0;
+    translate: 0 16px;
+  }
+
+  22%,
+  80% {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  100% {
+    opacity: 0;
+    translate: 0 8px;
+  }
 }
 
-/* GOTV easter egg: the word "GOTV" in the bio opens a "Have you voted?" pill */
 .gotv {
   margin: 0;
   padding: 0;
@@ -225,8 +315,16 @@ a {
   cursor: pointer;
   transition: color .2s, text-decoration-color .2s;
 
-  &:hover, &:focus-visible { color: var(--accent); text-decoration-color: var(--accent); }
-  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
 .vote {
@@ -235,10 +333,18 @@ a {
   padding-inline: 16px 6px;
   box-shadow: 0 16px 40px rgb(0 0 0 / .5);
 
-  &[hidden] { display: none; }
-  &.out { opacity: 0; }
+  &[hidden] {
+    display: none;
+  }
 
-  & .msg { padding-block: 9px; padding-inline-end: 10px; }
+  &.out {
+    opacity: 0;
+  }
+
+  & .msg {
+    padding-block: 9px;
+    padding-inline-end: 10px;
+  }
 
   & button {
     min-block-size: 36px;
@@ -250,7 +356,10 @@ a {
     cursor: pointer;
     transition: background .2s, color .2s, border-color .2s;
 
-    &:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
   }
 
   & .yes {
@@ -258,7 +367,11 @@ a {
     background: var(--bg);
     color: var(--ink);
 
-    &:hover, &:focus-visible { background: var(--accent); color: var(--bg); }
+    &:hover,
+    &:focus-visible {
+      background: var(--accent);
+      color: var(--bg);
+    }
   }
 
   & .no {
@@ -266,15 +379,21 @@ a {
     background: transparent;
     color: var(--bg);
 
-    &:hover, &:focus-visible {
+    &:hover,
+    &:focus-visible {
       border-color: var(--accent);
       color: color-mix(in srgb, var(--accent) 62%, black);
     }
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    &.in { animation: vote-in .6s var(--ease) both; }
-    &.out { animation: vote-out .6s var(--ease) both; }
+    &.in {
+      animation: vote-in .6s var(--ease) both;
+    }
+
+    &.out {
+      animation: vote-out .6s var(--ease) both;
+    }
   }
 
   @media (max-width: 640px) {
@@ -288,18 +407,33 @@ a {
     white-space: normal;
     text-align: center;
 
-    & > span:first-child { flex-basis: 100%; }
-    & .msg { padding: 8px 0; }
+    &>span:first-child {
+      flex-basis: 100%;
+    }
+
+    & .msg {
+      padding: 8px 0;
+    }
   }
 }
 
 @keyframes vote-in {
-  from { opacity: 0; translate: 0 16px; }
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
 }
 
 @keyframes vote-out {
-  from { opacity: 1; translate: 0 0; }
-  to { opacity: 0; translate: 0 8px; }
+  from {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  to {
+    opacity: 0;
+    translate: 0 8px;
+  }
 }
 
 .confetti {
@@ -317,7 +451,9 @@ a {
     animation: fly 2s both;
   }
 
-  @media (prefers-reduced-motion: reduce) { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
 }
 
 @keyframes fly {
@@ -326,11 +462,13 @@ a {
     opacity: 1;
     animation-timing-function: cubic-bezier(.15, .7, .3, 1);
   }
+
   40% {
     transform: translate(calc(var(--dx) * .75), var(--dy)) rotate(calc(var(--r) * .4));
     opacity: 1;
     animation-timing-function: cubic-bezier(.5, 0, .9, .6);
   }
+
   100% {
     transform: translate(var(--dx), calc(var(--dy) + 100vh)) rotate(var(--r));
     opacity: 0;
@@ -345,7 +483,9 @@ a {
   flex-direction: column;
   gap: 56px;
 
-  @media (max-width: 640px) { gap: 28px; }
+  @media (max-width: 640px) {
+    gap: 28px;
+  }
 }
 
 header {
@@ -367,7 +507,10 @@ header {
   color: var(--accent);
   transition: color .25s ease;
 
-  &:hover, &:focus-visible { color: var(--ink); }
+  &:hover,
+  &:focus-visible {
+    color: var(--ink);
+  }
 
   & svg {
     display: block;
@@ -377,7 +520,9 @@ header {
   }
 }
 
-.arrow { display: inline-block; }
+.arrow {
+  display: inline-block;
+}
 
 .hello {
   display: inline-flex;
@@ -389,15 +534,23 @@ header {
   border-radius: 999px;
   transition: color .2s, border-color .2s;
 
-  &:hover, &:focus-visible { border-color: var(--accent); }
+  &:hover,
+  &:focus-visible {
+    border-color: var(--accent);
+  }
 
   @media (prefers-reduced-motion: no-preference) {
-    & .arrow { transition: translate .25s ease; }
-    &:hover .arrow, &:focus-visible .arrow { translate: 3px 0; }
+    & .arrow {
+      transition: translate .25s ease;
+    }
+
+    &:hover .arrow,
+    &:focus-visible .arrow {
+      translate: 3px 0;
+    }
   }
 }
 
-/* Phone: mark tucks up under a semi-transparent panel; small headshot beside the role */
 main {
   max-inline-size: 700px;
   display: flex;
@@ -417,13 +570,37 @@ main {
     padding-inline: 0;
     background: color-mix(in srgb, var(--bg) 72%, transparent);
 
-    & h1, & .lead, & .bio { grid-column: 1 / -1; }
-    & h1 { grid-row: 1; }
-    & .role { grid-column: 1; grid-row: 2; }
-    & .about { display: contents; }
-    & .photo { grid-column: 2; grid-row: 2; }
-    & .lead { grid-row: 3; }
-    & .bio { grid-row: 4; }
+    & h1,
+    & .lead,
+    & .bio {
+      grid-column: 1 / -1;
+    }
+
+    & h1 {
+      grid-row: 1;
+    }
+
+    & .role {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    & .about {
+      display: contents;
+    }
+
+    & .photo {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    & .lead {
+      grid-row: 3;
+    }
+
+    & .bio {
+      grid-row: 4;
+    }
   }
 }
 
@@ -439,7 +616,9 @@ h1 {
     color: var(--tint);
 
     @media (prefers-reduced-motion: no-preference) {
-      .burst & { animation: tint 2.2s steps(1) both; }
+      .burst & {
+        animation: tint 2.2s steps(1) both;
+      }
     }
   }
 }
@@ -455,10 +634,14 @@ h1 {
   letter-spacing: .08em;
   text-transform: uppercase;
 
-  & span { white-space: nowrap; }
+  & span {
+    white-space: nowrap;
+  }
 
   @media (prefers-reduced-motion: no-preference) {
-    .burst & { animation: tint 2.2s steps(1) both; }
+    .burst & {
+      animation: tint 2.2s steps(1) both;
+    }
   }
 
   @media (max-width: 640px) {
@@ -499,7 +682,10 @@ h1 {
   @media (max-width: 640px) {
     inline-size: 56px;
 
-    & img { inline-size: 56px; block-size: 56px; }
+    & img {
+      inline-size: 56px;
+      block-size: 56px;
+    }
   }
 }
 
@@ -512,7 +698,11 @@ h1 {
   font-size: 1.0625rem;
   line-height: 1.6;
 
-  & p { margin: 0; max-inline-size: 64ch; text-wrap: pretty; }
+  & p {
+    margin: 0;
+    max-inline-size: 64ch;
+    text-wrap: pretty;
+  }
 
   @media (max-width: 640px) {
     gap: 14px;
@@ -531,7 +721,7 @@ footer {
   font-size: 1rem;
   font-weight: 500;
 
-  & > div {
+  &>div {
     min-block-size: 44px;
     display: flex;
     align-items: center;
@@ -544,18 +734,22 @@ footer {
   gap: 8px;
   transition: color .2s;
 
-  /* Arrow slides in on hover; with reduced motion it simply stays visible */
   @media (prefers-reduced-motion: no-preference) {
     & .arrow {
       opacity: 0;
       translate: -6px 0;
       transition: opacity .25s ease, translate .3s var(--ease);
     }
-    &:hover .arrow, &:focus-visible .arrow { opacity: 1; translate: 0 0; }
+
+    &:hover .arrow,
+    &:focus-visible .arrow {
+      opacity: 1;
+      translate: 0 0;
+    }
   }
 }
 
-/* 404: "Candidate withdrawn" ballot. No script — :has() shows the cast link for the marked choice. */
+/* 404 No script — :has() shows the cast link for the marked choice. */
 main.lost {
   max-inline-size: none;
   display: flex;
@@ -582,9 +776,14 @@ main.lost {
   flex-direction: column;
   gap: 28px;
 
-  @media (max-width: 640px) { flex: none; gap: 20px; }
+  @media (max-width: 640px) {
+    flex: none;
+    gap: 20px;
+  }
 
-  & .lead { max-inline-size: 24ch; }
+  & .lead {
+    max-inline-size: 24ch;
+  }
 }
 
 .ballot {
@@ -642,9 +841,10 @@ main.lost {
   cursor: pointer;
   transition: background .2s;
 
-  &:hover { background: #E6E6E2; }
+  &:hover {
+    background: #E6E6E2;
+  }
 
-  /* Visually hidden but focusable: the drawn box shows its state */
   & input {
     position: absolute;
     opacity: 0;
@@ -662,7 +862,7 @@ main.lost {
     border: 2px solid var(--paper-ink);
     border-radius: 50%;
 
-    /* The voter's mark */
+    /* The ballot mark */
     &::after {
       content: '×';
       font-size: 30px;
@@ -673,11 +873,19 @@ main.lost {
     }
   }
 
-  & input:checked + .box::after { opacity: 1; }
-  & input:focus-visible + .box { outline: 2px solid var(--accent); outline-offset: 3px; }
+  & input:checked+.box::after {
+    opacity: 1;
+  }
+
+  & input:focus-visible+.box {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
 
   @media (prefers-reduced-motion: no-preference) {
-    & input:checked + .box::after { animation: mark .25s var(--ease); }
+    & input:checked+.box::after {
+      animation: mark .25s var(--ease);
+    }
   }
 
   & .who {
@@ -698,14 +906,25 @@ main.lost {
     cursor: default;
     color: #6B6B66;
 
-    &:hover { background: none; }
-    & .box { border-color: #B5B5B0; }
-    & small { color: #6B6B66; }
+    &:hover {
+      background: none;
+    }
+
+    & .box {
+      border-color: #B5B5B0;
+    }
+
+    & small {
+      color: #6B6B66;
+    }
   }
 }
 
 @keyframes mark {
-  from { opacity: 0; scale: 1.8; }
+  from {
+    opacity: 0;
+    scale: 1.8;
+  }
 }
 
 .cast {
@@ -720,8 +939,15 @@ main.lost {
   font-weight: 600;
   transition: background .2s, color .2s;
 
-  &:hover, &:focus-visible { background: var(--accent); color: var(--bg); }
-  &:focus-visible { outline-color: var(--paper-ink); }
+  &:hover,
+  &:focus-visible {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  &:focus-visible {
+    outline-color: var(--paper-ink);
+  }
 
   &.idle {
     background: #DCDCD8;
@@ -729,10 +955,17 @@ main.lost {
     font-weight: 500;
   }
 
-  &[data-for] { display: none; }
+  &[data-for] {
+    display: none;
+  }
 }
 
-.ballot:has(input:checked) .cast.idle { display: none; }
+.ballot:has(input:checked) .cast.idle {
+  display: none;
+}
+
 .ballot:has(#vote-home:checked) .cast[data-for="home"],
 .ballot:has(#vote-mail:checked) .cast[data-for="mail"],
-.ballot:has(#vote-in:checked) .cast[data-for="in"] { display: flex; }
+.ballot:has(#vote-in:checked) .cast[data-for="in"] {
+  display: flex;
+}
