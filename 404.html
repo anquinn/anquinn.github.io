@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Andrew Quinn</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0B0B0C">
+  <!-- GitHub Pages serves this for any missing path, so every URL here is root-absolute -->
+  <link rel="icon" href="/img/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <defs><path id="aq" d="M806.0368042,652.1900635c0.2086182-0.3775635,0.4477539-0.7357178,0.6563721-1.1132812 c17.1912231-31.6207275,25.7970581-72.1362305,25.7970581-121.5251465c0-68.0414124-19.6762695-120.9430542-59.0275879-158.7110596 c-39.352417-37.7720947-95.3994141-56.6525269-168.1472168-56.6525269c-59.4356689,0-114.667511,14.8317261-152.511322,45.3822327 l-18.0901489-45.3822327H303.4618835L183.6753235,616.8225708L303.0737,634.5215454l65.6861267-172.9638672l73.3334961,193.553894 l375.232666,55.609436l23.4921875-35.5261841L806.0368042,652.1900635z M693.5102539,577.7581177l-38.4975586-25.4693604 l-50.3129272,76.0610962l31.9432983,21.1272583c-9.1868286,2.6834106-19.3179932,4.0439453-30.4331665,4.0439453 c-28.2219849,0-50.5317383-9.321167-66.9282227-27.963501c-16.3974609-18.6524658-24.5952148-49.2993774-24.5952148-91.9711304 c0-43.0493164,8.2475586-73.9048157,24.7437744-92.5471497c16.4962158-18.6382446,38.3582153-27.9644775,65.5870361-27.9644775 c28.4213867,0,50.9244385,9.1827698,67.5203857,27.5320129c16.5949097,18.3543396,24.9025879,47.4310608,24.9025879,87.2159424 C697.4402466,546.8629761,696.0888672,563.4283447,693.5102539,577.7581177z"/></defs>
+  </svg>
+
+  <div class="page">
+    <div class="wrap">
+      <header>
+        <a href="/" class="home" aria-label="Andrew Quinn, home">
+          <svg viewBox="176 306 664 394" aria-hidden="true"><use href="#aq"/></svg>
+        </a>
+        <a href="mailto:andrew@andrewquinn.ca" class="hello">Say hello <span class="arrow" aria-hidden="true">→</span></a>
+      </header>
+
+      <main class="lost">
+        <div class="lost-text">
+          <h1>Candidate<br><span class="accent">withdrawn</span></h1>
+          <p class="role">Error 404</p>
+          <p class="lead">The page you came for isn’t on the ballot. Mark one other choice.</p>
+        </div>
+
+        <!-- No script: :has() in site.css shows the cast link that matches the marked choice -->
+        <div class="ballot">
+          <fieldset>
+            <legend>Official ballot · Vote for one</legend>
+
+            <div class="choice withdrawn">
+              <span class="box" aria-hidden="true"></span>
+              <span class="who"><s>The page you wanted</s><small>Withdrawn</small></span>
+            </div>
+
+            <label class="choice">
+              <input type="radio" name="vote" value="home" id="vote-home">
+              <span class="box" aria-hidden="true"></span>
+              <span class="who">Andrew Quinn<small>Home page</small></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="vote" value="mail" id="vote-mail">
+              <span class="box" aria-hidden="true"></span>
+              <span class="who">Say hello<small>andrew@andrewquinn.ca</small></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="vote" value="in" id="vote-in">
+              <span class="box" aria-hidden="true"></span>
+              <span class="who">LinkedIn<small>Independent</small></span>
+            </label>
+          </fieldset>
+
+          <span class="cast idle">Mark a choice</span>
+          <a class="cast" data-for="home" href="/">Cast ballot <span aria-hidden="true">→</span></a>
+          <a class="cast" data-for="mail" href="mailto:andrew@andrewquinn.ca">Cast ballot <span aria-hidden="true">→</span></a>
+          <a class="cast" data-for="in" href="https://www.linkedin.com/in/anquinn1/">Cast ballot <span aria-hidden="true">→</span></a>
+        </div>
+      </main>
+
+      <footer>
+        <div><a href="/" class="link">Skip the vote, go home <span class="arrow" aria-hidden="true">→</span></a></div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
